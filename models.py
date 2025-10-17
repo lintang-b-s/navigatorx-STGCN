@@ -151,7 +151,7 @@ def evaluation(model, y_pred, y, scaler: StandardScaler ):
         y_pred_unnorm = scaler.inverse_transform(y_pred)
         return np.array([data_utils.mape(y=y_unnorm, y_pred=y_pred_unnorm), data_utils.rmse(y=y_unnorm, y_pred=y_pred_unnorm),
                          data_utils.mae(y=y_unnorm, y_pred=y_pred_unnorm)]), data_utils.mse(y=y_unnorm, y_pred=y_pred_unnorm),
-                         
+
     else:
         # dim = [len(h_step_idx), total_samples, n_vertex]
         tmp_list = [] # (len(h_step_idx), 3)
@@ -163,7 +163,7 @@ def evaluation(model, y_pred, y, scaler: StandardScaler ):
             tmp_mse_list.append(mse)
         # get min mse 
         mean_mse = float(np.mean(tmp_mse_list))
-      
+
         return np.concatenate(tmp_list, axis=-1), mean_mse # np.concatenate(tmp_list, axis=-1) = [n_pred*3]
 
 
